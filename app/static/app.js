@@ -17,7 +17,8 @@ const healthText = document.getElementById("healthText");
 let mediaRecorder = null;
 let mediaStream = null;
 let recordedChunks = [];
-let demoMode = false;
+const staticDemoHost = /github\.io$/i.test(window.location.hostname);
+let demoMode = staticDemoHost;
 let currentSupportResponse = "";
 let currentIntent = "unknown";
 let currentReportUrl = null;
@@ -51,6 +52,12 @@ const resetOutput = () => {
 };
 
 const fetchHealth = async () => {
+  if (staticDemoHost) {
+    demoMode = true;
+    setHealth(true, "Demo (sin backend)");
+    return;
+  }
+
   try {
     const response = await fetch("/api/health", { cache: "no-store" });
     if (!response.ok) throw new Error("health check failed");
