@@ -252,8 +252,18 @@ const uploadRecording = async (blob) => {
 const startRecording = async () => {
   resetOutput();
 
+  if (demoMode) {
+    setBusy(true);
+    recordingState.textContent = "Ejecutando demo sin backend ni micrófono...";
+    await demoProcess();
+    setBusy(false);
+    return;
+  }
+
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-    recordingState.textContent = "Tu navegador no soporta grabación de audio.";
+    recordingState.textContent = "Tu navegador no soporta grabación de audio. Activando demo...";
+    demoMode = true;
+    await demoProcess();
     return;
   }
 
@@ -286,7 +296,9 @@ const startRecording = async () => {
     recordingState.textContent = "Grabando... pulsa detener cuando termines.";
   } catch (error) {
     console.error(error);
-    recordingState.textContent = "No se pudo acceder al micrófono.";
+    recordingState.textContent = "No se pudo acceder al micrófono. Activando demo...";
+    demoMode = true;
+    await demoProcess();
     stopTracks();
     setBusy(false);
   }
