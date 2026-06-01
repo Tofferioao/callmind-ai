@@ -145,6 +145,12 @@ h1 {
   margin-bottom: 0.65rem;
 }
 
+.audio-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
 .btn {
   appearance: none;
   border: 0;
@@ -279,6 +285,10 @@ h1 {
   }
 
   .controls-row {
+    flex-direction: column;
+  }
+
+  .audio-actions {
     flex-direction: column;
   }
 
