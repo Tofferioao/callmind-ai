@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CallMind AI</title>
+  <link rel="stylesheet" href="style.css?v=6" />
+</head>
+<body>
+  <div class="ambient ambient-left"></div>
+  <div class="ambient ambient-right"></div>
+
+  <main class="shell">
+    <section class="hero card call-card" id="callCard" data-state="idle">
+      <div class="hero-copy">
+        <p class="eyebrow">CallMind AI</p>
+        <h1>Asistente de voz para soporte técnico IT</h1>
+        <p class="lead">
+          Inicia una llamada desde el navegador, habla de forma natural y deja que la IA escuche, procese,
+          responda y vuelva a escuchar sin cortar la conversación.
+        </p>
+        <div class="status-row">
+          <span class="status-chip" id="compatibilityPill">Verificando compatibilidad</span>
+          <span class="status-chip status-chip-soft" id="healthText">Esperando llamada</span>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="status-panel">
+          <span class="status-dot" id="healthDot"></span>
+          <div>
+            <strong id="recordingState">Esperando llamada</strong>
+            <p class="muted">Backend opcional + demo local</p>
+          </div>
+        </div>
+
+        <div class="avatar-wrap">
+          <div class="avatar-pulse"></div>
+          <div class="avatar" id="callAvatar" data-state="idle">
+            <span>CM</span>
+          </div>
+          <div class="avatar-caption">
+            <strong>Agente IA</strong>
+            <span id="callTimer">00:00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls card">
+      <div class="controls-row">
+        <button id="startBtn" class="btn btn-primary btn-call">Iniciar llamada</button>
+        <button id="hangupBtn" class="btn btn-danger btn-call" disabled>Colgar</button>
+        <a id="downloadReportBtn" class="btn btn-ghost btn-call" href="#" download style="pointer-events:none;opacity:.5">Descargar reporte JSON</a>
+      </div>
+      <div class="fallback-panel" id="fallbackNotice" hidden>
+        <p>Tu navegador no soporta reconocimiento de voz. Usa el cuadro de texto para simular la frase del usuario y seguir probando la llamada.</p>
+        <div class="fallback-row">
+          <textarea id="fallbackInput" class="fallback-input" rows="3" placeholder="Escribe aquí lo que dijo el usuario..."></textarea>
+          <button id="fallbackSendBtn" class="btn btn-secondary">Enviar texto</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="card metrics-card">
+        <div class="card-title">
+          <h2>Estado de la llamada</h2>
+          <span class="pill" id="durationBadge">00:00</span>
+        </div>
+        <p class="result-text">Estado actual: <strong id="healthText">Esperando llamada</strong></p>
+        <div class="metrics-list">
+          <div>
+            <span>Intención</span>
+            <strong id="intentBadge">unknown</strong>
+          </div>
+          <div>
+            <span>Score</span>
+            <strong id="scoreBadge">Score: --</strong>
+          </div>
+          <div>
+            <span>Último texto</span>
+            <strong id="transcriptValue">Esperando llamada</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="card response-card">
+        <div class="card-title">
+          <h2>Respuesta de soporte</h2>
+          <span class="pill pill-warm" id="callIdText">Call ID: --</span>
+        </div>
+        <p id="supportResponseText" class="result-text">La respuesta de soporte aparecerá aquí.</p>
+      </article>
+    </section>
+
+    <section class="card conversation-card">
+      <div class="card-title">
+        <h2>Historial conversacional</h2>
+        <span class="muted">Usuario y IA en tiempo real</span>
+      </div>
+      <div id="chatList" class="chat-list"></div>
+    </section>
+
+    <section class="card report-card">
+      <div class="card-title">
+        <h2>Reporte JSON</h2>
+        <span class="muted">Se genera al colgar</span>
+      </div>
+      <pre id="reportPreview" class="report-preview">El reporte se generará al finalizar la llamada.</pre>
+    </section>
+  </main>
+
+  <script type="module" src="callmind-app.js?v=2"></script>
+</body>
+</html>
