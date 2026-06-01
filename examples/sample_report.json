@@ -1,0 +1,8 @@
+{
+  "call_id": 1,
+  "transcription": "No puedo entrar a mi VPN corporativa.",
+  "intent": "vpn_issue",
+  "support_response": "Entiendo que tienes problemas para conectarte a la VPN corporativa. Primero verifica tu conexión a internet, luego confirma que tus credenciales estén correctas, reinicia el cliente VPN y prueba nuevamente. Si el error continúa, comparte el código de error con soporte para revisar tu perfil de acceso.",
+  "satisfaction_score": 94,
+  "created_at": "2026-05-29T10:00:00"
+}

@@ -1,0 +1,17 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.local
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+app/storage/audio/
+app/storage/tts/
+app/storage/reports/
+app/storage/*.db
+*.db
+*.sqlite3

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CallMind AI</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="ambient ambient-left"></div>
+  <div class="ambient ambient-right"></div>
+
+  <main class="shell">
+    <section class="hero card">
+      <div>
+        <p class="eyebrow">CallMind AI</p>
+        <h1>Asistente de voz para soporte técnico IT</h1>
+        <p class="lead">
+          Graba una llamada desde tu navegador, procesa el audio, detecta la intención, genera una respuesta,
+          escucha el TTS y descarga el reporte JSON.
+        </p>
+      </div>
+      <div class="status-panel">
+        <span class="status-dot" id="healthDot"></span>
+        <div>
+          <strong id="healthText">Verificando servicio...</strong>
+          <p class="muted">Backend FastAPI + SQLite</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls card">
+      <div class="controls-row">
+        <button id="startBtn" class="btn btn-primary">Iniciar grabación</button>
+        <button id="stopBtn" class="btn btn-secondary" disabled>Detener grabación</button>
+        <a id="downloadReportBtn" class="btn btn-ghost" href="#" download style="pointer-events:none;opacity:.5">Descargar reporte JSON</a>
+      </div>
+      <p id="recordingState" class="muted">Listo para capturar una llamada de soporte.</p>
+    </section>
+
+    <section class="grid">
+      <article class="card result-card">
+        <div class="card-title">
+          <h2>Transcripción</h2>
+          <span class="pill" id="intentBadge">unknown</span>
+        </div>
+        <p id="transcriptionText" class="result-text">La transcripción aparecerá aquí.</p>
+      </article>
+
+      <article class="card result-card">
+        <div class="card-title">
+          <h2>Respuesta de soporte</h2>
+          <span class="pill pill-warm" id="scoreBadge">Score: --</span>
+        </div>
+        <p id="supportResponseText" class="result-text">La respuesta generada aparecerá aquí.</p>
+      </article>
+    </section>
+
+    <section class="card audio-card">
+      <div class="card-title">
+        <h2>Audio TTS</h2>
+        <span class="muted">Reproduce la respuesta hablada</span>
+      </div>
+      <audio id="ttsPlayer" controls class="audio-player" hidden></audio>
+      <p id="ttsHint" class="muted">Aún no hay audio generado.</p>
+    </section>
+
+    <section class="card report-card">
+      <div class="card-title">
+        <h2>Detalle de la llamada</h2>
+        <span class="muted" id="callIdText">Call ID: --</span>
+      </div>
+      <pre id="reportPreview" class="report-preview">El resumen estructurado aparecerá aquí.</pre>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
